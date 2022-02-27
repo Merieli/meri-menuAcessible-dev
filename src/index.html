@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Acessible</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    
+    <header class="header">
+        <nav class="menu">
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <button class="menu-link">
+                        Framework
+                    </button>
+                </li>
+
+                <li class="menu-item">
+                    <button class="menu-link">
+                        Demos
+                    </button>
+                </li>
+
+                <li class="menu-item">
+                    <button class="menu-link" type="button" aria-expanded="true" aria-controls="resources_list">
+                        Resources
+                    </button>
+                    <ul class="menu-secondLevel" id="resources_list">
+                        <li class="secondLevel">
+                            <a href="#" class="secondLevel-link">Top Controls</a>
+                            <ul class="thirdLevel">
+                                <li class="thirdLevel-item">
+                                    <a href="#" class="thirdLevel-link">Grid</a>
+                                </li>
+                                <li class="thirdLevel-item">
+                                    <a href="#" class="thirdLevel-link">Chart</a>
+                                </li>
+                                <li class="thirdLevel-item">
+                                    <a href="#" class="thirdLevel-link">Controls</a>
+                                </li>
+                                <li class="thirdLevel-item">
+                                    <a href="#" class="thirdLevel-link">Financial Chart</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="secondLevel">
+                            <a href="#" class="secondLevel-link">Others</a>
+                            <ul class="thirdLevel">
+                                <li class="thirdLevel-item">
+                                    <a href="#" class="thirdLevel-link">API</a>
+                                </li>
+                                <li class="thirdLevel-item">
+                                    <a href="#" class="thirdLevel-link">Blogs</a>
+                                </li>
+                                <li class="thirdLevel-item">
+                                    <a href="#" class="thirdLevel-link">Knowledge Base</a>
+                                </li>
+                                <li class="thirdLevel-item">
+                                    <a href="#" class="thirdLevel-link">Videos</a>
+                                </li>
+                                <li class="thirdLevel-item">
+                                    <a href="#" class="thirdLevel-link">Forums</a>
+                                </li>
+                                <li class="thirdLevel-item">
+                                    <a href="#" class="thirdLevel-link">Licensing</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="menu-item">
+                    <a href="" class="menu-link">
+                        Documentation
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="account">
+            <button class="account-log">Log In</button>
+            <button class="account-sign">Sign Up</button>
+        </div>
+    </header>
+
+</body>
+</html>
