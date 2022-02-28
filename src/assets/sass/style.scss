@@ -65,7 +65,6 @@ $c_menu_sublist_text: #000000;
         .menu-link{
             color: $c_menu_text;
             border-radius: 15rem;
-            border: 0px solid $c_menu_selected_stroke;
             font-weight: 600;
             text-transform: uppercase;
             padding: 17rem;
@@ -75,7 +74,6 @@ $c_menu_sublist_text: #000000;
         &:hover{
             .menu-link{
                 background-color: $c_menu_selected;
-                border: 1px solid $c_menu_selected_stroke;
                 box-shadow: 1px 1px 1px 2px #00000014;
             }
 
