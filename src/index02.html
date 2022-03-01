@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Acessible</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    
+    <header class="header">
+        <nav aria-label="Teste"
+        class="menu">
+            <ul class="menu-list" 
+                role="menubar"
+                aria-label="Teste"
+            data-menu="acessible">
+                <li 
+                    class="menu-item"
+                    role="none"
+                >
+                    <a href="#"
+                        role="menuitem"
+                        tab-index="0" 
+                    class="menu-link">
+                        Framework
+                    </a>
+                </li>
+
+                <li 
+                class="menu-item">
+                    <a href="#"
+                        role="menuitem"
+                        tab-index="0"  
+                    class="menu-link">
+                        Demos
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="#" 
+                        role="menuitem"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        tab-index="0" 
+                    class="menu-link">
+                        Resources
+                    </a>
+                    <ul role="menu"
+                        aria-label="Resources"
+                    class="menu-secondLevel" id="resources_list">
+                        <li role="none"
+                        class="secondLevel">
+                            <a href="#"
+                                role="menuitem"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                tab-index="-1" 
+                            class="secondLevel-link" data-subListMenu>
+                                Top Controls
+                            </a>
+                            <ul role="menu"
+                                aria-label="Top Controls"
+                            class="thirdLevel">
+                                <li role="none"
+                                class="thirdLevel-item">
+                                    <a href="#"
+                                        role="menuitem"
+                                        tab-index="-1" 
+                                    class="thirdLevel-link" data-subListMenu>Grid</a>
+                                </li>
+                                <li role="none"
+                                class="thirdLevel-item">
+                                    <a href="#"
+                                        role="menuitem"
+                                        tab-index="-1"
+                                    class="thirdLevel-link" data-subListMenu>
+                                        Chart
+                                    </a>
+                                </li>
+                                <li role="none"
+                                class="thirdLevel-item">
+                                    <a href="#"
+                                        role="menuitem"
+                                        tab-index="-1"
+                                    class="thirdLevel-link" data-subListMenu>
+                                        Controls
+                                    </a>
+                                </li>
+                                <li role="none"
+                                class="thirdLevel-item">
+                                    <a href="#" 
+                                        role="menuitem"
+                                        tab-index="-1"
+                                    class="thirdLevel-link" data-subListMenu>
+                                        Financial Chart
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li role="none"
+                        class="secondLevel">
+                            <a href="#"
+                                role="menuitem"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                tabindex="-1"
+                            class="secondLevel-link" data-subListMenu>Others</a>
+                            <ul role="menu"
+                                aria-label="Others"
+                            class="thirdLevel">
+                                <li role="none"
+                                class="thirdLevel-item">
+                                    <a href="#"
+                                        role="menuitem"
+                                        tab-index="-1"
+                                    class="thirdLevel-link" data-subListMenu>
+                                        API
+                                    </a>
+                                </li>
+                                <li role="none"
+                                class="thirdLevel-item">
+                                    <a href="#"
+                                        role="menuitem"
+                                        tab-index="-1"
+                                    class="thirdLevel-link" data-subListMenu>
+                                        Blogs
+                                    </a>
+                                </li>
+                                <li role="none"
+                                class="thirdLevel-item">
+                                    <a href="#"
+                                        role="menuitem"
+                                        tabindex="-1"
+                                    class="thirdLevel-link" data-subListMenu>
+                                        Knowledge Base
+                                    </a>
+                                </li>
+                                <li role="none"
+                                class="thirdLevel-item">
+                                    <a href="#"
+                                        role="menuitem"
+                                        tabindex="-1"
+                                    class="thirdLevel-link" data-subListMenu>
+                                        Videos
+                                    </a>
+                                </li>
+                                <li role="none"
+                                class="thirdLevel-item">
+                                    <a href="#"
+                                        role="menuitem"
+                                        tabindex="-1"
+                                    class="thirdLevel-link" data-subListMenu>
+                                        Forums
+                                    </a>
+                                </li>
+                                <li role="none"
+                                class="thirdLevel-item">
+                                    <a href="#"
+                                        role="menuitem"
+                                        tabindex="-1"
+                                    class="thirdLevel-link" data-subListMenu>
+                                        Licensing
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="menu-item">
+                    <a href="#"
+                        role="menuitem"
+                        tab-index="0"  
+                    class="menu-link">
+                        Documentation
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="account">
+            <button class="account-log">Log In</button>
+            <button class="account-sign">Sign Up</button>
+        </div>
+    </header>
+
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/main02.js"></script>
+
+</body>
+</html>
