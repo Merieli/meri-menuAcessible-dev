@@ -71,7 +71,9 @@ $c_menu_sublist_text: #000000;
             transition: ease all 0.2s;
         }
 
-        &:hover{
+        &:hover,
+        &:active,
+        &:focus{
             .menu-link{
                 background-color: $c_menu_selected;
                 box-shadow: 1px 1px 1px 2px #00000014;
@@ -91,6 +93,10 @@ $c_menu_sublist_text: #000000;
         position: absolute;
         top: 115rem;
         padding: 25rem;
+
+        &.active{
+            display: flex;
+        }
 
         .secondLevel{
             padding-right: 60rem;
@@ -114,6 +120,10 @@ $c_menu_sublist_text: #000000;
                 &:last-child{
                     padding-bottom: 0;
                 }
+            }
+
+            &-link{
+                margin-left: 15rem;
             }
         }
     }

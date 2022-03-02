@@ -1,4 +1,4 @@
-.menu-item:hover .menu-secondLevel {
+.menu-item:hover .menu-secondLevel, .menu-item:active .menu-secondLevel, .menu-item:focus .menu-secondLevel {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -352,7 +352,7 @@ body {
   padding: 17rem;
   transition: ease all 0.2s;
 }
-.menu-item:hover .menu-link {
+.menu-item:hover .menu-link, .menu-item:active .menu-link, .menu-item:focus .menu-link {
   background-color: #EFF1FF;
   box-shadow: 1px 1px 1px 2px #00000014;
 }
@@ -364,6 +364,9 @@ body {
   position: absolute;
   top: 115rem;
   padding: 25rem;
+}
+.menu-secondLevel.active {
+  display: flex;
 }
 .menu-secondLevel .secondLevel {
   padding-right: 60rem;
@@ -382,6 +385,9 @@ body {
 }
 .menu-secondLevel .thirdLevel-item:last-child {
   padding-bottom: 0;
+}
+.menu-secondLevel .thirdLevel-link {
+  margin-left: 15rem;
 }
 
 .account-log {

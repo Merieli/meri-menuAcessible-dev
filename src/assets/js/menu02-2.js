@@ -1,3 +1,5 @@
+// Menu com Jquery sem a interação de seleção do Item de menu por letra
+
 (function (){
     // Função construtora executada ao inicializar o objeto Menubar
     const Menubar = function (domNode) {
@@ -6,13 +8,11 @@
       
         // Verifique se menubarNode é um elemento DOM
         if (!domNode instanceof Element) {
-            console.log('caiu aqui 1');
             throw new TypeError(msgPrefix + 'is not a DOM Element.');
         }
       
         // Verifica se menubarNode possui elementos descendentes
         if (domNode.childElementCount === 0) {
-            console.log('caiu aqui 2');
             throw new Error(msgPrefix + 'has no element children.');
         }        
       
@@ -20,7 +20,6 @@
         e = elementChildren;
         while (e) {
             var menubarItem = e.firstElementChild;
-            console.log('caiu aqui 3');
             if (e && menubarItem && menubarItem.tagName !== 'A') {
                 throw new Error(msgPrefix + 'has child elements are not A elements.');
             }
@@ -35,7 +34,6 @@
         this.domNode = domNode;
       
         this.listMenuItems = []; //define o atributo "listMenuItems" como um array vazio
-        this.firstChars = []; //define o atributo "firstChars" como um array vazio
       
         this.firstItem = null; // define o atributo "firstItem" como null - See Menubar init method
         this.lastItem = null; // define o atributo "lastItem" como null -  See Menubar init method
@@ -68,9 +66,7 @@
                 menubarItem.init();
                 // adiciona a ultima posicao do array listMenuItems cada instancia de objeto criada a partir do menubarItem
                 this.listMenuItems.push(menubarItem);
-                // adiciona a ultima posicao do array firstChars a primeira varra do texto contido na tag A do menu em minuscula
                 textContent = menuElementLink.textContent.trim();
-                this.firstChars.push(textContent.substring(0, 1).toLowerCase());
             }
             // Reatribuir ao valor do elemento LI o proximo elemento irmão, dessa forma ele é definido como o proximo elemento a cada execução do while e quando for o ultimo elemento será atributo o valor "null" fazendo com que o while termine
             childElementUL = childElementUL.nextElementSibling;
@@ -95,7 +91,7 @@
             var objectMenubarItem = this.listMenuItems[i];
             // se o item do menu tiver atributo que deve estar incluido na sequencia de TAB será atribuido a flag o valor do atributo aria-expanded "que Indica que o submenu está aberto" como True
             if (objectMenubarItem.domNode.tabIndex == 0) {
-                flag = objectMenubarItem.domNode.getAttribute('aria-expanded') === 'true';
+                flag = $(objectMenubarItem.domNode).attr('aria-expanded') === 'true';
             }
             //define que o item do menu deve continuar focalizavel mas sair da sequencia de TAB
             objectMenubarItem.domNode.tabIndex = -1;
@@ -152,44 +148,7 @@
         this.setFocusToItem(newItem);      
     };
     
-    // metodo do objeto que seta o foco para o primeiro caracter
-    Menubar.prototype.setFocusByFirstCharacter = function (currentItem, char) {
-        var start, index, char = char.toLowerCase();
-        var flag = currentItem.domNode.getAttribute('aria-expanded') === 'true';
-      
-        // Obter índice inicial para pesquisa com base na posição de currentItem
-        start = this.listMenuItems.indexOf(currentItem) + 1;
-        if (start === this.listMenuItems.length) {
-            start = 0;
-        }
-      
-        // Verifica os slots restantes no menu executando o metodo "getIndexFirstChars"
-        index = this.getIndexFirstChars(start, char);
-      
-        // Se não for encontrado nos slots restantes, verifique desde o início
-        if (index === -1) {
-            index = this.getIndexFirstChars(0, char);
-        }
-      
-        // Se a correspondência foi encontrada define o foco para este indice
-        if (index > -1) {
-            this.setFocusToItem(this.listMenuItems[ index ]);
-        }
-    };
-    
-    // metodo do objeto que pega o primeiro indice dos caracteres
-    Menubar.prototype.getIndexFirstChars = function (startIndex, char) {
-        for (var i = startIndex; i < this.firstChars.length; i++) {
-            //se o caracter tiver um valor iqual ao contido no array firstChars retorna o valor do seu indice
-            if (char === this.firstChars[ i ]) {
-                console.log(i);
-                return i;
-            }
-        }
-        return -1;
-    };
-    
-    /* define um novo objeto construtor MenubarItem */
+    /* define um novo objeto MenubarItem */
     const MenubarItem = function (domNode, menuObj) {
 
         this.menu = menuObj;
@@ -221,15 +180,15 @@
         this.domNode.tabIndex = -1;
         
         //quando uma tecla for disparada irá executar a partir do menubaritem o metodo "handleKeydown"
-        this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
+        $(this.domNode).keydown(this.handleKeydown.bind(this));
         //quando ocorrer o foco em um elemento irá executar a partir do menubaritem o metodo "handleFocus"
-        this.domNode.addEventListener('focus', this.handleFocus.bind(this));
+        $(this.domNode).focus(this.handleFocus.bind(this));
         //quando ocorrer a perda de foco em um elemento irá executar a partir do menubaritem o metodo "handleBlur"
-        this.domNode.addEventListener('blur', this.handleBlur.bind(this));
+        $(this.domNode).blur(this.handleBlur.bind(this));
         //quando o mouse for movido para um elemento ou seu filho irá executar a partir do menubaritem o metodo "handleMouseover"
-        this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
+        $(this.domNode).mouseover(this.handleMouseover.bind(this));
         //quando o mouse for movido para fora de um elemento ou seu filho  irá executar a partir do menubaritem o metodo "handleMouseout"
-        this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
+        $(this.domNode).mouseout(this.handleMouseout.bind(this));
       
         //Inicializar menus pop-up      
         var nextElement = this.domNode.nextElementSibling;
@@ -242,14 +201,7 @@
 
     // inicializa um metodo handleKeydown herdado do metodo MenubarItem  
     MenubarItem.prototype.handleKeydown = function (event) {
-        // char recebe a tecla que foi clicada quando o evento ocorreu
-        var char = event.key,
-            flag = false;
-      
-        function isPrintableCharacter (str) {
-            // se a string passada como argumento tiver 1 caractere e nenhum espaco em branco ira retornar true
-            return str.length === 1 && str.match(/\S/);
-        }
+        var flag = false;
         
         switch (event.keyCode) {
             case this.keyCode.SPACE:
@@ -301,10 +253,6 @@
                 break;
         
             default:
-                if (isPrintableCharacter(char)) {
-                    this.menu.setFocusByFirstCharacter(this, char);
-                    flag = true;
-                }
                 break;
         }
       
@@ -316,10 +264,10 @@
     // metodo herdado do objeto MenubarItem que seta a expansão da div
     MenubarItem.prototype.setExpanded = function (value) {
         if (value) {
-            this.domNode.setAttribute('aria-expanded', 'true');
+            $(this.domNode).attr('aria-expanded', true);
         }
         else {
-            this.domNode.setAttribute('aria-expanded', 'false');
+            $(this.domNode).attr('aria-expanded', false);
         }
     };
       
@@ -342,7 +290,7 @@
     };
 
     /* Objeto prototype PopupMenu */
-    const PopupMenu = function (domNode, controllerObj) {
+    function PopupMenu (domNode, controllerObj) {
         const msgPrefix = 'PopupMenu constructor argument domNode ';
       
         // Verifique se domNode é um elemento DOM
@@ -369,7 +317,6 @@
         this.controller = controllerObj;
       
         this.menuitems = []; // See PopupMenu init method
-        this.firstChars = []; // See PopupMenu init method
       
         this.firstItem = null; // See PopupMenu init method
         this.lastItem = null; // See PopupMenu init method
@@ -390,8 +337,8 @@
         var childElement, menuElement, menuItem, textContent, numItems, label;
       
         // Configure o próprio domNode      
-        this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
-        this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
+        $(this.domNode).mouseover(this.handleMouseover.bind(this));
+        $(this.domNode).mouseout(this.handleMouseout.bind(this));
       
         // Percorra os filhos do elemento domNode: configure cada um com role menuitem e referência de armazenamento no array menuitems.
         childElement = this.domNode.firstElementChild;
@@ -404,7 +351,6 @@
                 menuItem.init();
                 this.menuitems.push(menuItem);
                 textContent = menuElement.textContent.trim();
-                this.firstChars.push(textContent.substring(0, 1).toLowerCase());
             }
             childElement = childElement.nextElementSibling;
         }
@@ -417,7 +363,7 @@
         }
     };
       
-    /* MANIFESTADORES DE EVENTOS */      
+    /* MANIFESTADORES DE EVENTOS */       
     PopupMenu.prototype.handleMouseover = function (event) {
         this.hasHover = true;
     };
@@ -510,61 +456,13 @@
         }
     };
       
-    PopupMenu.prototype.setFocusByFirstCharacter = function (currentItem, char) {
-        var start, index;
-        const charLower = char.toLowerCase();
-      
-        // Obter índice inicial para pesquisa com base na posição de currentItem
-        start = this.menuitems.indexOf(currentItem) + 1;
-        if (start === this.menuitems.length) {
-            start = 0;
-        }
-      
-        // Verifique os slots restantes no menu
-        index = this.getIndexFirstChars(start, charLower);
-      
-        // Se não for encontrado nos slots restantes, verifique desde o início
-        if (index === -1) {
-            index = this.getIndexFirstChars(0, charLower);
-        }
-      
-        // Se a correspondência foi encontrada, define foco para o item no menu
-        if (index > -1) {
-            this.menuitems[ index ].domNode.focus();
-        }
-    };
-      
-    PopupMenu.prototype.getIndexFirstChars = function (startIndex, char) {
-        for (var i = startIndex; i < this.firstChars.length; i++) {
-            if (char === this.firstChars[ i ]) {
-                return i;
-            }
-        }
-        return -1;
-    };
-      
     /* MÉTODOS DE EXIBIÇÃO DO MENU */      
     PopupMenu.prototype.open = function () {
-        // Obtenha a posição e o retângulo delimitador do nó DOM do objeto controlador
-        var elementDefinitions = this.controller.domNode.getBoundingClientRect();
-      
-        // Define as propriedades CSS do PopUpMenu
-        if (!this.controller.isMenubarItem) {
-            this.domNode.parentNode.style.position = 'relative';
-            this.domNode.style.display = 'block';
-            this.domNode.style.position = 'absolute';
-            this.domNode.style.left = elementDefinitions.width + 'px';
-            this.domNode.style.zIndex = 100;
+        // Define a classe CSS do PopUpMenu
+        if (this.controller.isMenubarItem) {
+            $(this.domNode).addClass('active');
         }
-        else {
-            this.domNode.style.display = 'block';
-            this.domNode.style.position = 'absolute';
-            this.domNode.style.top = (elementDefinitions.height - 1) + 'px';
-            this.domNode.style.zIndex = 100;
-        }
-      
-        this.controller.setExpanded(true);
-      
+        this.controller.setExpanded(true);  
     };
       
     PopupMenu.prototype.close = function (force) {      
@@ -584,13 +482,12 @@
         }
       
         if (force || (!hasFocus && !this.hasHover && !controllerHasHover)) {
-            this.domNode.style.display = 'none';
-            this.domNode.style.zIndex = 0;
+            $(this.domNode).removeClass('active');
             this.controller.setExpanded(false);
         }
     };
 
-    /* Quarta parte: */
+    /* Objeto MenuItem */
     const MenuItem = function (domNode, menuObj) {
 
         if (typeof popupObj !== 'object') {
@@ -621,12 +518,12 @@
     MenuItem.prototype.init = function () {
         this.domNode.tabIndex = -1;
       
-        this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
-        this.domNode.addEventListener('click', this.handleClick.bind(this));
-        this.domNode.addEventListener('focus', this.handleFocus.bind(this));
-        this.domNode.addEventListener('blur', this.handleBlur.bind(this));
-        this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
-        this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
+        $(this.domNode).keydown(this.handleKeydown.bind(this));
+        $(this.domNode).click(this.handleClick.bind(this));
+        $(this.domNode).focus(this.handleFocus.bind(this));
+        $(this.domNode).blur(this.handleBlur.bind(this));
+        $(this.domNode).mouseover(this.handleMouseover.bind(this));
+        $(this.domNode).mouseout(this.handleMouseout.bind(this));
       
         // Inicializar o menu suspenso
       
@@ -640,19 +537,14 @@
     };
       
     MenuItem.prototype.isExpanded = function () {
-        return this.domNode.getAttribute('aria-expanded') === 'true';
+        return $(this.domNode).attr('aria-expanded') === 'true';
     };
       
     /* MANIFESTADORES DE EVENTOS */      
     MenuItem.prototype.handleKeydown = function (event) {
         const target  = event.currentTarget;
-        var char = event.key,
-            flag = false,
+        var flag = false,
             clickEvent;
-      
-        function isPrintableCharacter (str) {
-            return str.length === 1 && str.match(/\S/);
-        }
       
         switch (event.keyCode) {
             case this.keyCode.SPACE:
@@ -733,10 +625,6 @@
                 break;
         
             default:
-                if (isPrintableCharacter(char)) {
-                    this.menu.setFocusByFirstCharacter(this, char);
-                    flag = true;
-                }
                 break;
         }
       
@@ -748,10 +636,10 @@
       
     MenuItem.prototype.setExpanded = function (value) {
         if (value) {
-            this.domNode.setAttribute('aria-expanded', 'true');
+            $(this.domNode).attr('aria-expanded', true);
         }
         else {
-            this.domNode.setAttribute('aria-expanded', 'false');
+            $(this.domNode).attr('aria-expanded', false);
         }
     };
       
