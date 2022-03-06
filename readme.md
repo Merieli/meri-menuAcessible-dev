@@ -52,8 +52,15 @@ sass --watch src/assets/sass/style.scss:src/assets/css/style.css
 ### Navigating through the menu
 
 <details>
+    <summary> <strong>Menu Type [01-0]</strong> </summary>
+    Menu Acessivel com interações Vanilla JS Baseado no <a href="https://codepen.io/merieli/pen/WNXawBz">menu da W3C.</a> 
+
+</details>
+
+<details>
     <summary> <strong>Menu Type [02-0]</strong> </summary>
-    Menu Acessivel com interações completas em Vanilla JS Baseado no <a href="https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/examples/menubar/menubar-1/menubar-1.html#">menu da W3C</a> 
+    Menu Acessivel com interações completas em Vanilla JS Baseado no <a href="https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/examples/menubar/menubar-1/menubar-1.html#">menu da W3C</a> com semantica correta e facilitada para uso de leitor de tela.
+    <p>Para usar o menu acessível é preciso seguir a estrutura HTML do menu02.html, com os atributos e data-attributes necessários para cada tipo de item ou subitem do menu. E ao utilizar o script JS deve ser selecionado o data atribute correto para a variavel menubar. No CSS alem do hover sobre os itens do menu que deve exibir o submenu, a classe "active" também deve ativar a visibilidade do submenu.</p>
 
 #### Keyboard Support
 |       Key          |       Function    |
@@ -72,7 +79,8 @@ sass --watch src/assets/sass/style.scss:src/assets/css/style.css
 
 <details>
     <summary> <strong>Menu Type [02-1]</strong> </summary>
-    Menu Acessivel com interações completas utilizando JS e JQuery Baseado no <a href="https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/examples/menubar/menubar-1/menubar-1.html#">menu da W3C</a> 
+    Menu Acessivel com interações completas utilizando JS e JQuery Baseado no <a href="https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/examples/menubar/menubar-1/menubar-1.html#">menu da W3C</a> com semantica correta e facilitada para uso de leitor de tela.
+    <p>Para usar o menu acessível é preciso seguir a estrutura HTML do menu02.html, com os atributos e data-attributes necessários para cada tipo de item ou subitem do menu. E ao utilizar o script JS deve ser selecionado o data atribute correto para a variavel menubar. No CSS alem do hover sobre os itens do menu que deve exibir o submenu, a classe "active" também deve ativar a visibilidade do submenu.</p>
 
 #### Keyboard Support
 |       Key          |       Function    |
@@ -91,7 +99,8 @@ sass --watch src/assets/sass/style.scss:src/assets/css/style.css
 
 <details>
     <summary> <strong>Menu Type [02-2]</strong> </summary>
-    Menu Acessivel mais simples utilizando JS e JQuery Baseado no <a href="https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/examples/menubar/menubar-1/menubar-1.html#">menu da W3C</a> 
+    Menu Acessivel mais simples utilizando JS e JQuery Baseado no <a href="https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/examples/menubar/menubar-1/menubar-1.html#">menu da W3C</a> com semantica correta e facilitada para uso de leitor de tela.
+    <p>Para usar o menu acessível é preciso seguir a estrutura HTML do menu02.html, com os atributos e data-attributes necessários para cada tipo de item ou subitem do menu. E ao utilizar o script JS deve ser selecionado o data atribute correto para a variavel menubar. No CSS alem do hover sobre os itens do menu que deve exibir o submenu, a classe "active" também deve ativar a visibilidade do submenu.</p>
 
 #### Keyboard Support
 |       Key          |       Function    |
@@ -106,6 +115,7 @@ sass --watch src/assets/sass/style.scss:src/assets/css/style.css
 | [**End**] | Move o foco para o último item na barra de menus/ submenu. |
 
 </details>
+
 
 ## :octocat: Contributing
 
