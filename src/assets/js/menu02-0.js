@@ -767,6 +767,6 @@
         setTimeout(this.menu.close.bind(this.menu, false), 300);
     };
     
-    var menubar = new Menubar(document.querySelector('[data-menu="acessible"]'));
+    let menubar = new Menubar(document.querySelector('[data-menu="acessible"]'));
     menubar.init();
 })();
