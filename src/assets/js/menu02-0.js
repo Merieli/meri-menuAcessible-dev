@@ -1,6 +1,4 @@
-// https://www.w3.org/TR/2019/NOTE-wai-aria-practices-1.1-20190814/examples/menubar/menubar-1/menubar-1.html#
-// Menu Acessivel com interações completas em Vanilla JS
-(function (){
+(() => {
     // Função construtora executada ao inicializar o objeto Menubar
     const Menubar = function (domNode) {
         var elementChildren = domNode.firstElementChild;

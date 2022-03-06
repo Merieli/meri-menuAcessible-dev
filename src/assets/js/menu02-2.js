@@ -1,6 +1,4 @@
-// Menu com Jquery sem a interação de seleção do Item de menu por letra
-
-(function (){
+(() => {
     // Função construtora executada ao inicializar o objeto Menubar
     const Menubar = function (domNode) {
         var elementChildren = domNode.firstElementChild;

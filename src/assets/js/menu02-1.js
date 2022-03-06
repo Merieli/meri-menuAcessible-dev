@@ -1,6 +1,4 @@
-// Menu Acessivel com interações completas utilizando JQuery
-
-(function (){
+(() => {
     // Função construtora executada ao inicializar o objeto Menubar
     const Menubar = function (domNode) {
         var elementChildren = domNode.firstElementChild;

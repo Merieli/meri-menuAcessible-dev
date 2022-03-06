@@ -68,7 +68,7 @@ $c_menu_sublist_text: #000000;
             font-weight: 600;
             text-transform: uppercase;
             padding: 17rem;
-            transition: ease all 0.2s;
+            transition: ease-out 0.3s;
         }
 
         &:hover,
@@ -90,9 +90,11 @@ $c_menu_sublist_text: #000000;
         box-shadow: 1px 1px 1px 2px #00000014;
         border-radius: 15rem;
         display: none;
+        flex-direction: column;
         position: absolute;
         top: 115rem;
         padding: 25rem;
+        overflow: auto;
 
         &.active{
             display: flex;
@@ -100,12 +102,19 @@ $c_menu_sublist_text: #000000;
 
         .secondLevel{
             padding-right: 60rem;
+            padding-bottom: 20rem;
 
             &-link{
                 display: block;
                 font-weight: 700;
                 padding-bottom: 15rem;
                 text-transform: uppercase;
+                opacity: 1;
+                transition: 0.3s ease;
+
+                &:hover{
+                    opacity: 0.6;
+                }
             }
 
             &:last-child{
@@ -124,6 +133,12 @@ $c_menu_sublist_text: #000000;
 
             &-link{
                 margin-left: 15rem;
+                opacity: 1;
+                transition: 0.3s ease;
+
+                &:hover{
+                    opacity: 0.6;
+                }
             }
         }
     }
