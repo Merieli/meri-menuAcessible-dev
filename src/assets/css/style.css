@@ -89,7 +89,8 @@ html {
   /* 2 */
   -moz-tab-size: 4;
   /* 3 */
-  tab-size: 4;
+  -o-tab-size: 4;
+     tab-size: 4;
   /* 3 */
 }
 
@@ -131,7 +132,8 @@ Text-level semantics
 Add the correct text decoration in Chrome, Edge, and Safari.
 */
 abbr[title] {
-  text-decoration: underline dotted;
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
 }
 
 /**
@@ -416,5 +418,3 @@ body {
   padding: 18rem 25rem;
   margin-left: 30rem;
 }
-
-/*# sourceMappingURL=style.css.map */
