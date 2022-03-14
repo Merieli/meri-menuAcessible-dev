@@ -46,7 +46,7 @@ This project was developed with the following technologies:
 #### Starting Development 
 ```
 # Iniciar a compilação SASS
-sass --watch src/assets/sass/style.scss:src/assets/css/style.css
+gulp
 ```
 
 ### Navigating through the menu

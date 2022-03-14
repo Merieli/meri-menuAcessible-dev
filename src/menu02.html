@@ -5,13 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Acessible</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    
     <header class="header">
         <nav aria-label="Teste"
-        class="menu">
+        class="menu">            
+            <button class="menu-button" data-toggle aria-expanded="false">
+                <span class="menu-icon material-icons">
+                    menu
+                </span>
+            </button>
+
             <ul class="menu-list" 
                 role="menubar"
                 aria-label="Teste"

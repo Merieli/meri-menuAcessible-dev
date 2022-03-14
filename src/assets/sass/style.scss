@@ -42,9 +42,73 @@ $c_menu_sublist_text: #000000;
     flex-direction: column;
 }
 
+@mixin small {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin small-portrait {
+    @media (max-width: 768px) and (orientation: portrait) {
+        @content;
+    }
+}
+
+@mixin small-landscape {
+    @media (max-width: 768px) and (orientation: landscape) {
+        @content;
+    }
+}
+
+@mixin medium-p {
+    @media (min-width: 768px) and (max-width: 900px) {
+        @content;
+    }
+}
+
+@mixin medium-m {
+    @media (min-width: 900px) and (max-width: 1000px) {
+        @content;
+    }
+}
+
+@mixin medium {
+    @media (min-width: 768px) and (max-width: 1280px) {
+        @content;
+    }
+}
+
+@mixin medium-portrait {
+    @media (min-width: 768px) and (max-width: 1280px) and (orientation: portrait) {
+        @content;
+    }
+}
+
+@mixin medium-landscape {
+    @media (min-width: 768px) and (max-width: 1280px) and (orientation: landscape) {
+        @content;
+    }
+}
+
+@mixin large {
+    @media (min-width: 1280px) {
+        @content;
+    }
+}
+
+@mixin large-portrait {
+    @media (min-width: 1280px) and (orientation: portrait) {
+        @content;
+    }
+}
+
+@mixin large-ladscape {
+    @media (min-width: 1280px) and (orientation: landscape) {
+        @content;
+    }
+}
+
 @import 'resets/reset', 'resets/normalize', 'resets/typography';
-
-
 
 .header{
     @extend %flex-jstbetw;
@@ -55,28 +119,114 @@ $c_menu_sublist_text: #000000;
     width: 95vw;
 }
 
+
+
+
 .menu{
+    &-icon{
+        cursor: pointer;
+
+        @include small{
+            display: block;
+        }
+        @include medium{
+            display: none;
+        }
+        @include large{
+            display: none;
+        }
+
+        &:hover .menu{
+            display: block;
+        }
+    }
+
     &-list{
-        @extend %flex-jstbetw;
+        @extend %flex-jstbetw; 
+
+        @include small{
+            background-color: $c_menu_sublist_bg;
+            box-shadow: 1px 1px 1px 2px #00000014;
+            display: none;
+            position: absolute;
+            top: 18%;
+            left: 10%;
+            padding: 25rem; 
+            border-radius: 15rem;
+            max-height: 400px;
+            overflow: auto  ;
+        }
+        @include medium{
+            background-color: unset;
+            border-radius: 15rem;
+            display: flex;
+            flex-direction: row;
+            padding: 0;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+        @include large{
+            background-color: unset;
+            border-radius: 15rem;
+            display: flex;
+            flex-direction: row;
+            padding: 0;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        &.is-active{
+            display: block;
+        }
     }
 
     &-item{
+        @include small{
+            padding-bottom: 12rem;
+        }
+        @include medium{
+            padding-bottom: 0;
+        }
+        @include large{
+            padding-bottom: 0;
+        }
 
         .menu-link{
             color: $c_menu_text;
-            border-radius: 15rem;
-            font-weight: 600;
+            border-radius: 15rem;            
             text-transform: uppercase;
             padding: 17rem;
             transition: ease-out 0.3s;
+            opacity: 1;
+
+            @include small{
+                font-weight: 700;
+                &:hover{
+                    opacity: 0.6;
+                }
+            }
+            @include medium{
+                font-weight: 600;
+            }
+            @include large{
+                font-weight: 600;
+            }
         }
 
         &:hover,
         &:active,
         &:focus{
             .menu-link{
-                background-color: $c_menu_selected;
-                box-shadow: 1px 1px 1px 2px #00000014;
+                @include medium{
+                    background-color: $c_menu_selected;
+                    box-shadow: 1px 1px 1px 2px #00000014;
+                }
+                @include large{
+                    background-color: $c_menu_selected;
+                    box-shadow: 1px 1px 1px 2px #00000014;
+                }
             }
 
             .menu-secondLevel{
@@ -86,15 +236,31 @@ $c_menu_sublist_text: #000000;
     }
 
     &-secondLevel{
-        background-color: $c_menu_sublist_bg;
-        box-shadow: 1px 1px 1px 2px #00000014;
-        border-radius: 15rem;
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 115rem;
-        padding: 25rem;
+        flex-direction: column;        
+        padding: 10rem 25rem 0;
         overflow: auto;
+
+        @include small{
+            display: block;
+            position: relative;
+            top: 0;
+        }
+        @include medium{
+            background-color: $c_menu_sublist_bg;
+            box-shadow: 1px 1px 1px 2px #00000014;
+            border-radius: 15rem;
+            display: none;
+            position: absolute;
+            top: 40rem;
+        }
+        @include large{
+            background-color: $c_menu_sublist_bg;
+            box-shadow: 1px 1px 1px 2px #00000014;
+            border-radius: 15rem;
+            display: none;
+            position: absolute;
+            top: 40rem;
+        }
 
         &.active{
             display: flex;
@@ -104,13 +270,29 @@ $c_menu_sublist_text: #000000;
             padding-right: 60rem;
             padding-bottom: 20rem;
 
+            &:not(* .thirdLevel){
+                padding-bottom: 0;
+            }
+
+            &:last-child{
+                padding-bottom: 0;
+            }
+
             &-link{
                 display: block;
-                font-weight: 700;
                 padding-bottom: 15rem;
                 text-transform: uppercase;
                 opacity: 1;
                 transition: 0.3s ease;
+                @include small{
+                    font-weight: 600;
+                }
+                @include medium{
+                    font-weight: 700;
+                }
+                @include large{
+                    font-weight: 700;
+                }
 
                 &:hover{
                     opacity: 0.6;
@@ -125,10 +307,6 @@ $c_menu_sublist_text: #000000;
         .thirdLevel{
             &-item{
                 padding-bottom: 20rem;
-
-                &:last-child{
-                    padding-bottom: 0;
-                }
             }
 
             &-link{
